@@ -1,0 +1,39 @@
+/* ClickableOptionsList.css */
+.options-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.options-list li {
+    position: relative;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #f0f0f0;
+    }
+}
+
+.options-list li span {
+    display: inline-block;
+}
+
+.voted-text {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #4caf50;
+}
+
+.message {
+    text-align: center;
+    margin: 20px;
+    color: #888;
+}

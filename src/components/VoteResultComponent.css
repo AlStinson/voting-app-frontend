@@ -1,0 +1,9 @@
+.result-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.success-message {
+    font-size: 18px;
+    color: #4caf50;
+}
