@@ -1,7 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import useRefState from "./useRefState";
 
-const useFetch = (url, requestData, expectData=true) => {
-    const [loading, setLoading] = useState(true);
+const useFetch = (url, requestData, expectData = true) => {
+
+    const [refLoading, stateLoading, setLoading] = useRefState(false)
+    const [finish, setFinish] = useState(false)
     const [status, setStatus] = useState(null);
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
@@ -10,7 +13,10 @@ const useFetch = (url, requestData, expectData=true) => {
 
     const fetchData = useCallback(() => {
 
+        if (refLoading.current) return;
+
         setLoading(true);
+        setFinish(false);
         setStatus(null);
         setData(null);
         setError(null);
@@ -28,12 +34,11 @@ const useFetch = (url, requestData, expectData=true) => {
             })
             .finally(() => {
                 setLoading(false);
+                setFinish(true);
             })
-    }, [url, requestDataState, expectData]);
+    }, [url, requestDataState, expectData, refLoading, setLoading]);
 
-    useEffect(() => fetchData(), [fetchData]);
-
-    return [loading, status, data, error, fetchData];
+    return [stateLoading, finish, status, data, error, fetchData];
 }
 
 export default useFetch;
