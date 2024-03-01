@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/voting-app-frontend/static/css/main.5fc509d9.css",
-    "main.js": "/voting-app-frontend/static/js/main.2ca95f09.js",
+    "main.css": "/voting-app-frontend/static/css/main.fda9419a.css",
+    "main.js": "/voting-app-frontend/static/js/main.0df05411.js",
     "static/js/453.9b3d064a.chunk.js": "/voting-app-frontend/static/js/453.9b3d064a.chunk.js",
     "index.html": "/voting-app-frontend/index.html",
-    "main.5fc509d9.css.map": "/voting-app-frontend/static/css/main.5fc509d9.css.map",
-    "main.2ca95f09.js.map": "/voting-app-frontend/static/js/main.2ca95f09.js.map",
+    "main.fda9419a.css.map": "/voting-app-frontend/static/css/main.fda9419a.css.map",
+    "main.0df05411.js.map": "/voting-app-frontend/static/js/main.0df05411.js.map",
     "453.9b3d064a.chunk.js.map": "/voting-app-frontend/static/js/453.9b3d064a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5fc509d9.css",
-    "static/js/main.2ca95f09.js"
+    "static/css/main.fda9419a.css",
+    "static/js/main.0df05411.js"
   ]
 }
