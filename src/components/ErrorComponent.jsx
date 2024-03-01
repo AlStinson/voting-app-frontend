@@ -1,9 +1,12 @@
 import './ErrorComponent.css'
 
-const ErrorComponent = props => {
-    return <div className="error-message">
-        There is an internal problem. Try refresh later. Error: {props.message}
-    </div>
+const ErrorComponent = ({ message, children }) => {
+    return <>
+        <div className="error-message">
+            {message}
+        </div>
+        {children}
+    </>
 }
 
 export default ErrorComponent;

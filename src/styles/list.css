@@ -1,0 +1,41 @@
+.options-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.options-list li {
+    position: relative;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+
+    &.disabled {
+        background-color: #dddddd;
+        color: #666;
+        cursor: auto;
+    }
+
+    &:hover:not(.disabled):not(.selected-option) {
+        background-color: lightblue;
+        color: black;
+    }
+
+    &.selected-option {
+        background-color: #4caf50;
+        color: #fff;
+        cursor: auto
+    }
+
+
+}
+
+
+.options-list li span {
+    display: inline-block;
+}

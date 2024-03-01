@@ -13,9 +13,8 @@ const LoginComponent = props => {
         setUserInput(e.target.value.slice(0, 6));
     };
 
-    return <div className="container">
-        <h1 className="heading">Please enter your code</h1>
-
+    return <>
+        <h2>Introduce tu código</h2>
             <input
                 className="input"
                 type="number"
@@ -25,9 +24,9 @@ const LoginComponent = props => {
                 placeholder="123456"
             />
             <button className="button" onClick={handleSave}>
-                Save
+                Continuar
             </button>
-    </div>
+    </>
 }
 
 export default LoginComponent

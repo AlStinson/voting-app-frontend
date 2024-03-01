@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import './SurveyComponent.css';
 import useFetch from '../hooks/useFetch';
 import LoadingComponent from './LoadingComponent';
 import ErrorComponent from './ErrorComponent';
 
-const SurveyComponent = ({ survey, setSurvey, code, setVote }) => {
+const SurveyComponent = ({ survey, code, setVote, reset }) => {
 
     const [selectedOption, setSelectedOption] = useState();
-    const [data, error] = useFetch(`${process.env.REACT_APP_BACKEND_DOMAIN}/${code}/survey/${survey}`);
+    const [loading, status, data, error] = useFetch(`${process.env.REACT_APP_BACKEND_DOMAIN}/${code}/survey/${survey}`);
     const alreadyVoted = data && data.options.some(option => option.voted);
 
     const handleOptionClick = (option) => {
@@ -18,13 +17,13 @@ const SurveyComponent = ({ survey, setSurvey, code, setVote }) => {
         setVote(selectedOption);
     };
 
-    if (!error && !data) return <LoadingComponent />;
-    if (error) return <ErrorComponent message={error} />;
+    if (loading) return <LoadingComponent />;
+    if (status === 404) <ErrorComponent message={"El premio al que intentas acceder ya no está disponible."} />;
+    if (status >= 400 || error) return <ErrorComponent message={`Error interno: ${error?.message ?? "Respuesta inesperada"}.`} />;
 
-    return <div className="voting-container">
-        <h1>{data.name}</h1>
+    return <>
+        <h2>{data.name}</h2>
         <p>{data.description}</p>
-        { alreadyVoted && <p className='already-voted'>You already voted in this Survey</p>}
         <ul className="options-list">
             {data.options.map(({ number, value, voted }, index) => (
                 <li
@@ -37,10 +36,12 @@ const SurveyComponent = ({ survey, setSurvey, code, setVote }) => {
                 </li>
             ))}
         </ul>
-        <button onClick={handleVoteClick} className="vote-button" disabled={selectedOption == null || alreadyVoted}>
-            Vote
+        { alreadyVoted && <p className='green'>Ya has votado en este premio.</p>}
+        <button onClick={handleVoteClick} disabled={selectedOption == null || alreadyVoted}>
+            Votar
         </button>
-    </div>;
+        <button onClick={reset}>{"Atrás"}</button>
+    </>;
 }
 
 export default SurveyComponent;

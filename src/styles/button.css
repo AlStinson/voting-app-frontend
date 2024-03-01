@@ -1,0 +1,15 @@
+button {
+    background-color: lightblue;
+    color: black;
+    margin: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:disabled {
+        background-color: #dddddd;
+        color: #666;
+        cursor: not-allowed;
+    }
+}
