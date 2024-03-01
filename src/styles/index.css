@@ -17,6 +17,8 @@ code {
 }
 
 #root {
-  min-height: calc(100vh);
+  min-height: 100vh;
   background-color: #2d2d2d;
+  display: flex;
+  flex-flow: column;
 }

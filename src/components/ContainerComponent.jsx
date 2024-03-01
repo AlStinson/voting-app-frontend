@@ -7,7 +7,7 @@ const ContainerComponent = ({ children }) => {
         </header>
         <main> {children} </main>
         <footer>
-            <p className="footer">&copy; 2024. All rights reserved.</p>
+            <p>&copy; AlStinson 2024. All rights reserved.</p>
         </footer>
     </>
 }

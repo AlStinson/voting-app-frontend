@@ -10,7 +10,7 @@ const SurveyListComponent = ({ options, setOption, eraseCode, code }) => {
                 {options.map((option, index) => (
                     <li key={index} onClick={() => setOption(option.code)}>
                         <span>{option.name}</span>
-                        {option.voted && <span className="voted-text green">Voted</span>}
+                        {option.voted && <span className="voted-text green">Votado</span>}
                     </li>
                 ))}
             </ul> : <div className='message'>No hay ningún premio disponible para votar ahora mismo. Intentalo más tarde.</div>
