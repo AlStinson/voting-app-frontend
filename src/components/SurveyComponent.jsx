@@ -19,9 +19,9 @@ const SurveyComponent = ({ survey, code, setVote, reset }) => {
 
     useEffect(fetchData, [fetchData])
 
-    if (!finished) return <LoadingComponent />;
-    if (status === 404) <ErrorComponent message={"El premio al que intentas acceder ya no está disponible."} />;
-    if (status >= 400 || error) return <ErrorComponent message={`Error interno: ${error?.message ?? "Respuesta inesperada"}.`} />;
+    if (!finished) return <LoadingComponent> <button onClick={reset}>{"Atrás"}</button></LoadingComponent>;
+    if (status === 404) <ErrorComponent message={"El premio al que intentas acceder ya no está disponible."}> <button onClick={reset}>{"Atrás"}</button></ErrorComponent>;
+    if (status >= 400 || error) return <ErrorComponent message={`Error interno: ${error?.message ?? "Respuesta inesperada"}.`}> <button onClick={reset}>{"Atrás"}</button></ErrorComponent>;
 
     return <>
         <h2>{data.name}</h2>

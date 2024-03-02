@@ -1,0 +1,46 @@
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+/* Style for the options section */
+form label>div {
+    display: flex;
+    align-items: center;
+}
+
+form label>div input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* Style for the "Eliminar" (Remove) button */
+form label>div button {
+    background-color: #f44336;
+}
+
+form label>div button:hover {
+    background-color: #d32f2f;
+}
+
+form input:invalid {
+    background-color: ivory;
+    border: none;
+    outline: 2px solid red;
+    border-radius: 5px;
+}

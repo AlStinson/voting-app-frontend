@@ -7,11 +7,32 @@ import "./styles/index.css";
 import "./styles/list.css";
 import "./styles/button.css";
 import "./styles/color.css";
+import { Link, RouterProvider, createHashRouter } from 'react-router-dom';
+import ContainerComponent from './components/ContainerComponent';
+import ErrorComponent from './components/ErrorComponent';
+import AdminApp from './AdminApp';
+
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <App />
+  },
+  {
+    path: "/admin",
+    element: <AdminApp />
+  },
+  {
+    path: "*",
+    element: <ErrorComponent message="404 - Demostración no encontrada"><Link to="/" style={{ color: "white" }}>Volver a los premios</Link></ErrorComponent>
+  }
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ContainerComponent>
+      <RouterProvider router={router} base />
+    </ContainerComponent>
   </React.StrictMode>
 );
 

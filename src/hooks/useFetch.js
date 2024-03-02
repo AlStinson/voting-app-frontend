@@ -9,7 +9,7 @@ const useFetch = (url, requestData, expectData = true) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
 
-    const [requestDataState] = useState(requestData)
+    const [requestDataState, setRequestDataState] = useState(requestData)
 
     const fetchData = useCallback(() => {
 
@@ -38,7 +38,7 @@ const useFetch = (url, requestData, expectData = true) => {
             })
     }, [url, requestDataState, expectData, refLoading, setLoading]);
 
-    return [stateLoading, finish, status, data, error, fetchData];
+    return [stateLoading, finish, status, data, error, fetchData, setRequestDataState];
 }
 
 export default useFetch;

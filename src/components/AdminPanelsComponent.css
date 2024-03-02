@@ -1,0 +1,25 @@
+.panels-container {
+    display: flex;
+}
+
+.panels-container section {
+    flex: 48%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.panels-container .vertical-line {
+    text-align: center;
+    flex: 2px;
+    margin: 0 calc(2% - 1px);
+    border-left: 2px solid #fff;
+    min-height: calc(100vh - 6.34em - 140px);
+}
+
+.active-slider {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
