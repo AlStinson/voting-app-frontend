@@ -5,7 +5,7 @@ import LoadingComponent from "./LoadingComponent";
 import "./VoteResultComponent.css"
 
 const VoteResultComponent = ({ code, survey, vote, reset }) => {
-    const [, finished, status,,error,fetchData] = useFetch(`${process.env.REACT_APP_BACKEND_DOMAIN}/${code}/survey/${survey}/${vote}`, { method: "POST" });
+    const [, finished, status,,error,fetchData] = useFetch(`${process.env.REACT_APP_BACKEND_DOMAIN}/${code}/survey/${survey}/${vote}`, { method: "POST" }, false);
 
     useEffect(fetchData, [fetchData]);
 

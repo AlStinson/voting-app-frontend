@@ -1,7 +1,9 @@
 import { useCallback, useState } from "react";
 import useRefState from "./useRefState";
 
-const useFetch = (url, requestData, expectData = true) => {
+const EMPTY_FUNC = () => {};
+
+const useFetch = (url, requestData, expectData = true, callback = EMPTY_FUNC) => {
 
     const [refLoading, stateLoading, setLoading] = useRefState(false)
     const [finish, setFinish] = useState(false)
@@ -35,8 +37,9 @@ const useFetch = (url, requestData, expectData = true) => {
             .finally(() => {
                 setLoading(false);
                 setFinish(true);
+                callback();
             })
-    }, [url, requestDataState, expectData, refLoading, setLoading]);
+    }, [url, requestDataState, expectData, refLoading, setLoading, callback]);
 
     return [stateLoading, finish, status, data, error, fetchData, setRequestDataState];
 }

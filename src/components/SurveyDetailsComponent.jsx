@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import LoadingComponent from './LoadingComponent';
 import './SurveyDetailsComponent.css'
 import useFetch from '../hooks/useFetch';
@@ -16,24 +16,33 @@ const SurveyDetailsComponent = ({ survey, setSurvey, token, fetchListData }) => 
         }
     );
 
-    const [loadingEnabled, finishedEnabled, , , , fetchDataEnabled] = useFetch(
+    const fetchAllData = useCallback(() => {
+        fetchData();
+        fetchListData();
+    }, [fetchData, fetchListData]);
+
+    const [loadingEnabled, , , , , fetchDataEnabled] = useFetch(
         `${process.env.REACT_APP_BACKEND_DOMAIN}/admin/survey/${survey.code}/enable`,
         {
             method: "POST",
             headers: {
                 "X-ADMIN": token,
             }
-        }
+        },
+        true,
+        fetchAllData,
     );
 
-    const [loadingDisabled, finishedDisabled, , , , fetchDataDisabled] = useFetch(
+    const [loadingDisabled, , , , , fetchDataDisabled] = useFetch(
         `${process.env.REACT_APP_BACKEND_DOMAIN}/admin/survey/${survey.code}/disable`,
         {
             method: "POST",
             headers: {
                 "X-ADMIN": token,
             }
-        }
+        },
+        true,
+        fetchAllData,
     );
 
     const [, finishedBorrar, statusBorrar, , , fetchDataBorrar] = useFetch(
@@ -53,15 +62,13 @@ const SurveyDetailsComponent = ({ survey, setSurvey, token, fetchListData }) => 
     }
 
     useEffect(fetchData, [fetchData]);
+
     useEffect(() => {
-        if (finishedEnabled || finishedDisabled ) {
-            fetchListData();
-            fetchData();
-        } else if (finishedBorrar && statusBorrar < 300 && 199<statusBorrar) {
+        if (finishedBorrar && statusBorrar < 300 && 199 < statusBorrar) {
             setSurvey(null)
             fetchListData();
         }
-    }, [finishedEnabled, finishedDisabled, finishedBorrar, statusBorrar, fetchData, fetchListData, setSurvey])
+    }, [finishedBorrar, statusBorrar, setSurvey, fetchListData])
 
 
     if (!finished) return <LoadingComponent />;
@@ -70,7 +77,7 @@ const SurveyDetailsComponent = ({ survey, setSurvey, token, fetchListData }) => 
     return <>
         <h2>{data.name}</h2>
         <p>{data.description}</p>
-        {loadingEnabled || loadingDisabled ? <LoadingComponent/> :data.active ? <p className='green'> Activo </p> : <p className='red'>Inactivo</p>}
+        {loadingEnabled || loadingDisabled ? <LoadingComponent /> : data.active ? <p className='green'> Activo </p> : <p className='red'>Inactivo</p>}
         <div>
             <button onClick={() => fetchDataEnabled()} disabled={data.active}>Activar</button>
             <button onClick={() => fetchDataDisabled()} disabled={!data.active}>Desactivar</button>
