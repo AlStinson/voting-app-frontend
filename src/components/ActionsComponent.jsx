@@ -29,7 +29,7 @@ const ActionsComponent = ({ token, setSelectedSurvey, refreshData }) => {
     const [loadingGen100, , , dataGen100, , fetchDataGen100] = useFetch(
         `${process.env.REACT_APP_BACKEND_DOMAIN}/admin/code/generate`,
         {
-            method: "GET",
+            method: "POST",
             headers: {
                 "X-ADMIN": token,
                 "Content-Type": "application/json",
