@@ -7,12 +7,13 @@ import "./styles/index.css";
 import "./styles/list.css";
 import "./styles/button.css";
 import "./styles/color.css";
-import { Link, RouterProvider, createHashRouter } from 'react-router-dom';
+import { Link, RouterProvider, createBrowserRouter, createHashRouter } from 'react-router-dom';
 import ContainerComponent from './components/ContainerComponent';
 import ErrorComponent from './components/ErrorComponent';
 import AdminApp from './AdminApp';
+import LoadingComponent from './components/LoadingComponent';
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />
@@ -31,7 +32,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ContainerComponent>
-      <RouterProvider router={router} base />
+      <RouterProvider router={router} fallbackElement={LoadingComponent} />
     </ContainerComponent>
   </React.StrictMode>
 );
